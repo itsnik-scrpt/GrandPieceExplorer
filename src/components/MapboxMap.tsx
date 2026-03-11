@@ -117,8 +117,8 @@ export default function MapboxMap({ markers = [], onMarkerDrop }: MapboxMapProps
         // Click to drop pin
         mapInstance!.on('click', (e) => {
           if (!dropping) return
-          const randomDepth = Math.floor(Math.random() * (DEPTH_MAX - DEPTH_MIN + 1)) + DEPTH_MIN
-          onMarkerDrop?.(e.lngLat.lat, e.lngLat.lng, randomDepth)
+          const pinDepth = Math.floor(Math.random() * (DEPTH_MAX - DEPTH_MIN + 1)) + DEPTH_MIN
+          onMarkerDrop?.(e.lngLat.lat, e.lngLat.lng, pinDepth)
           setDropping(false)
         })
       })

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { use, useState } from 'react'
 import { motion } from 'framer-motion'
 import GlassCard from '@/components/GlassCard'
 import { getSocket } from '@/lib/socket'
@@ -30,9 +30,9 @@ interface CrewPageProps {
 }
 
 export default function CrewPage({ params }: CrewPageProps) {
+  const { id: crewId } = use(params)
   const [messages, setMessages] = useState<{ id: string; username: string; content: string; time: string }[]>([])
   const [input, setInput] = useState('')
-  void params
 
   const sendMessage = (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,7 +40,7 @@ export default function CrewPage({ params }: CrewPageProps) {
     if (!trimmed) return
     const socket = getSocket()
     const msg = { id: Date.now().toString(), username: 'You', content: trimmed, time: 'now' }
-    socket.emit('chat:send', { channel: 'crew:1', content: trimmed })
+    socket.emit('chat:send', { channel: `crew:${crewId}`, content: trimmed })
     setMessages((prev) => [...prev, msg])
     setInput('')
   }

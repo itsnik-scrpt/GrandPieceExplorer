@@ -43,13 +43,14 @@ export default function BountyMarquee({ entries = DEMO_ENTRIES }: BountyMarqueeP
     let animId: number
     let pos = 0
     const speed = 0.5
+    const el = track
 
     function tick() {
       pos -= speed
-      if (Math.abs(pos) >= track!.scrollWidth / 2) {
+      if (Math.abs(pos) >= el.scrollWidth / 2) {
         pos = 0
       }
-      track!.style.transform = `translateX(${pos}px)`
+      el.style.transform = `translateX(${pos}px)`
       animId = requestAnimationFrame(tick)
     }
 

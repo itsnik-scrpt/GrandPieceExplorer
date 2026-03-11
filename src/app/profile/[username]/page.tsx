@@ -1,5 +1,6 @@
 'use client'
 
+import { use } from 'react'
 import { motion } from 'framer-motion'
 import GlassCard from '@/components/GlassCard'
 import WantedPoster from '@/components/WantedPoster'
@@ -32,8 +33,8 @@ interface ProfilePageProps {
 }
 
 export default function ProfilePage({ params }: ProfilePageProps) {
-  void params
-  const user = DEMO_USER
+  const { username } = use(params)
+  const user = { ...DEMO_USER, username: username || DEMO_USER.username }
 
   return (
     <div className="pt-16 pb-20">
