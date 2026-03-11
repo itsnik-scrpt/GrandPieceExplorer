@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #0B4F6C;
+  --secondary: #01BAEF;
+  --accent: #20BF55;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(135deg, #e0f4ff 0%, #b3e8ff 40%, #d6f5e3 100%);
+  min-height: 100vh;
+  color: var(--primary);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Glassmorphism base utility */
+.glass {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Mapbox reset */
+.mapboxgl-map {
+  font-family: inherit;
+}
+
