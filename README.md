@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌊 Grand Piece Explorer
+
+A collaborative deep-sea research platform for tracking Oda's 651-meter mystery. Built for One Piece fans, researchers, and maritime data enthusiasts.
+
+## Tech Stack
+
+- **Next.js 15** – App Router, TypeScript
+- **Tailwind CSS v4** – Glassmorphism design (Pearl White / Ocean Blue)
+- **Framer Motion** – Page transitions, hover effects, animations
+- **Supabase** – Auth, PostgreSQL database, Row Level Security
+- **Mapbox GL JS** – Interactive bathymetry map with 651m depth filter
+- **Socket.io** – Real-time global & crew chat
+
+## Features
+
+- 🗺️ Interactive Mapbox map filtered to the 646–656m depth range
+- 💬 Real-time global chat sidebar with Haki level badges
+- 🏴‍☠️ Crew system (form crews, private chat, member roles)
+- 🍈 Devil Fruit assignment modal during onboarding
+- 📋 Forum with categories: Theories, Maritime Data, Gear/Tech, Off-Topic
+- 🏅 Bounty & badge profile system with "Wanted" poster cards
+- 🎭 Glassmorphism UI throughout
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure environment variables
+
+Copy `.env.local.example` to `.env.local` and fill in your credentials:
+
+```bash
+cp .env.local.example .env.local
+```
+
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server-side only) |
+| `NEXT_PUBLIC_MAPBOX_TOKEN` | Mapbox public access token |
+| `NEXT_PUBLIC_SOCKET_URL` | WebSocket server URL (default: `http://localhost:3001`) |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name for image uploads |
+
+### 3. Set up the database
+
+Run `supabase/schema.sql` in your Supabase SQL Editor to create all tables and RLS policies.
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/               # Next.js App Router pages
+    layout.tsx       # Root layout (Navbar)
+    page.tsx         # Landing page
+    about/           # About the 651m mystery
+    auth/            # Login & Registration
+    dashboard/       # Map dashboard + chat sidebar
+    crews/           # Crew listing and individual crew pages
+    forum/           # Community forum
+    profile/         # User profiles
+  components/        # Shared UI components
+    GlassCard.tsx    # Glassmorphic card (default/dark/ocean variants)
+    Navbar.tsx       # Fixed navigation bar
+    ChatSidebar.tsx  # Slide-in WebSocket chat
+    MapboxMap.tsx    # Mapbox GL map with 651m filter
+    BountyMarquee.tsx  # Animated bounty ticker
+    WantedPoster.tsx   # "Wanted Dead or Alive" card
+    DevilFruitModal.tsx  # Devil Fruit assignment spinner
+  lib/
+    supabase.ts      # Browser Supabase client
+    supabaseServer.ts  # Server Supabase client
+    socket.ts        # Singleton Socket.io client
+  types/
+    index.ts         # TypeScript types for all entities
+supabase/
+  schema.sql         # Full database schema with RLS policies
+```
 
-## Learn More
+## The 651m Mystery
 
-To learn more about Next.js, take a look at the following resources:
+In **Chapter 651** of One Piece, Eiichiro Oda included a precise 651-meter depth annotation in the Sea Forest arc. Cross-referenced with JAMSTEC bathymetric surveys, researchers have identified anomalous acoustic signatures at the 646–656m range. Oda is expected to reveal more in **2026**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
